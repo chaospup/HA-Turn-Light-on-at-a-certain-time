@@ -1,0 +1,21 @@
+blueprint:
+  name: CP-Turn lights ON at defined time
+  description: Turn lights ON at defined time
+  domain: automation
+  input:
+    time_entity:
+      name: Time
+      selector:
+        time:
+    light_entity:
+      name: Light
+      selector:
+        target:
+          entity:
+            domain: light
+trigger:
+  platform: time
+  at: !input time_entity
+action:
+  - service: light.turn_on
+    target: !input light_entity
